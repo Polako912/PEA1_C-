@@ -1,2 +1,7 @@
 # PEA1_C-
-Pierwszy projekt z przedmioty Projektowanie efektywnych algorytmów napisany w języku C# w wersji okienkowej
+Projekty z przedmioty Projektowanie efektywnych algorytmów napisany w języku C# w wersji okienkowej.
+Algorytmy:
+Brute Force
+Branch & Bound
+Symulowanie wyżarzanie
+Algorytm genetyczny
