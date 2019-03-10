@@ -1,0 +1,10 @@
+C:\Users\asus\Documents\Visual Studio 2017\Projects\PEA1_WindowApp\PEA1_WindowApp\bin\Debug\PEA1_WindowApp.exe.config
+C:\Users\asus\Documents\Visual Studio 2017\Projects\PEA1_WindowApp\PEA1_WindowApp\bin\Debug\PEA1_WindowApp.exe
+C:\Users\asus\Documents\Visual Studio 2017\Projects\PEA1_WindowApp\PEA1_WindowApp\bin\Debug\PEA1_WindowApp.pdb
+C:\Users\asus\Documents\Visual Studio 2017\Projects\PEA1_WindowApp\PEA1_WindowApp\obj\Debug\PEA1_WindowApp.csprojAssemblyReference.cache
+C:\Users\asus\Documents\Visual Studio 2017\Projects\PEA1_WindowApp\PEA1_WindowApp\obj\Debug\PEA1_WindowApp.Properties.Resources.resources
+C:\Users\asus\Documents\Visual Studio 2017\Projects\PEA1_WindowApp\PEA1_WindowApp\obj\Debug\PEA1_WindowApp.csproj.GenerateResource.cache
+C:\Users\asus\Documents\Visual Studio 2017\Projects\PEA1_WindowApp\PEA1_WindowApp\obj\Debug\PEA1_WindowApp.csproj.CoreCompileInputs.cache
+C:\Users\asus\Documents\Visual Studio 2017\Projects\PEA1_WindowApp\PEA1_WindowApp\obj\Debug\PEA1_WindowApp.exe
+C:\Users\asus\Documents\Visual Studio 2017\Projects\PEA1_WindowApp\PEA1_WindowApp\obj\Debug\PEA1_WindowApp.pdb
+C:\Users\asus\Documents\Visual Studio 2017\Projects\PEA1_WindowApp\PEA1_WindowApp\obj\Debug\PEA1_WindowApp.Form1.resources
