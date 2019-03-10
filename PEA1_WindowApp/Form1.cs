@@ -29,29 +29,48 @@ namespace PEA1_WindowApp
             mainMenu.MenuItems.Add(menuItem2);
             menuItem2.MenuItems.Add(menuItem5);
             mainMenu.MenuItems.Add(menuItem3);
-
+            
             this.Controls.Add(chooseFile);
             this.Controls.Add(bfButton);
             this.Controls.Add(BnBbutton);
             this.Menu = mainMenu;
+
             chooseFile.Width = 120;
             chooseFile.Top = 60;
             chooseFile.Left = 350;
+
             bfButton.Top = 90;
             bfButton.Left = 350;
+
             BnBbutton.Top = 120;
             BnBbutton.Left = 350;
+
             bfButton.Width = 120;
             BnBbutton.Width = 120;
+
             chooseFile.Text = "Wybierz plik";
             bfButton.Text = "Algorytm BruteForce";
             BnBbutton.Text = "Algorytm Branch & Bound";
+
+            EventHandler ev = new EventHandler(this.chooseFile_click);
+            chooseFile.Click += ev;
+
             InitializeComponent();
         }
 
         private void Form1_Load(object sender, EventArgs e)
         {
 
+        }
+
+        public void chooseFile_click(object sender, EventArgs e)
+        {
+            string path;
+            OpenFileDialog file = new OpenFileDialog();
+            if (file.ShowDialog() == DialogResult.OK)
+            {
+                path = file.FileName;
+            }
         }
     }
 }
