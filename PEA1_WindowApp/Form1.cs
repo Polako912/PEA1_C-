@@ -12,6 +12,8 @@ namespace PEA1_WindowApp
 {
     public partial class Form1 : Form
     {
+        private ReadData rd = new ReadData();
+
         MainMenu mainMenu = new MainMenu();
         MenuItem menuItem1 = new MenuItem("Plik");
         MenuItem menuItem2 = new MenuItem("O programie");
@@ -22,6 +24,7 @@ namespace PEA1_WindowApp
         Button chooseFile = new Button();
         Button bfButton = new Button();
         Button BnBbutton = new Button();
+
         public Form1()
         {
             mainMenu.MenuItems.Add(menuItem1);
@@ -65,12 +68,7 @@ namespace PEA1_WindowApp
 
         public void chooseFile_click(object sender, EventArgs e)
         {
-            string path;
-            OpenFileDialog file = new OpenFileDialog();
-            if (file.ShowDialog() == DialogResult.OK)
-            {
-                path = file.FileName;
-            }
+            rd.ReadFromFile();
         }
     }
 }
