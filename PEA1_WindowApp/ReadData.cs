@@ -9,14 +9,21 @@ namespace PEA1_WindowApp
     class ReadData
     {
         public int vertex { get; set; }
+        public List<string> list = new List<string>();
 
         public ReadData()
         {
             vertex = 0;
         }
 
+        ~ReadData()
+        {
+            list.Clear();
+        }
+
         public void ReadFromFile()
         {
+            list.Clear();
             string path;
             OpenFileDialog file = new OpenFileDialog();
             if (file.ShowDialog() == DialogResult.OK)
@@ -27,22 +34,15 @@ namespace PEA1_WindowApp
                 string str = reader.ReadLine();
 
                 str = File.ReadLines(path).First();
-               vertex = Int32.Parse(str);
+                vertex = Int32.Parse(str);
 
                 var fileText = File.ReadAllLines(path).Skip(1);
-
-                List<string> list = new List<string>();
 
                 foreach (object item in fileText)
                 {
                     list.Add(item.ToString());
                 }
-
-                var msg = string.Join(Environment.NewLine, list.ToArray());
-
-                MessageBox.Show(msg);
             }
         }
-
     }
 }

@@ -69,6 +69,9 @@ namespace PEA1_WindowApp
         public void chooseFile_click(object sender, EventArgs e)
         {
             rd.ReadFromFile();
+            var msg = string.Join(Environment.NewLine, rd.list.ToArray());
+
+            MessageBox.Show(msg);
         }
     }
 }
