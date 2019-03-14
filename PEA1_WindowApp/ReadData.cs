@@ -16,11 +16,6 @@ namespace PEA1_WindowApp
             vertex = 0;
         }
 
-        ~ReadData()
-        {
-            list.Clear();
-        }
-
         public void ReadFromFile()
         {
             list.Clear();

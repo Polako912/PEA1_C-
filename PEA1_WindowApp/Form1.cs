@@ -23,7 +23,6 @@ namespace PEA1_WindowApp
 
         Button chooseFile = new Button();
         Button bfButton = new Button();
-        Button BnBbutton = new Button();
 
         public Form1()
         {
@@ -35,7 +34,6 @@ namespace PEA1_WindowApp
             
             this.Controls.Add(chooseFile);
             this.Controls.Add(bfButton);
-            this.Controls.Add(BnBbutton);
             this.Menu = mainMenu;
 
             chooseFile.Width = 120;
@@ -45,15 +43,10 @@ namespace PEA1_WindowApp
             bfButton.Top = 90;
             bfButton.Left = 350;
 
-            BnBbutton.Top = 120;
-            BnBbutton.Left = 350;
-
             bfButton.Width = 120;
-            BnBbutton.Width = 120;
 
             chooseFile.Text = "Wybierz plik";
-            bfButton.Text = "Algorytm BruteForce";
-            BnBbutton.Text = "Algorytm Branch & Bound";
+            bfButton.Text = "Symulowane Wyzarzanie";
 
             EventHandler ev = new EventHandler(this.chooseFile_click);
             chooseFile.Click += ev;
