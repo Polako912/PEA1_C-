@@ -13,7 +13,7 @@ namespace PEA1_WindowApp
 
         public ReadData()
         {
-            vertex = 0;
+ 
         }
 
         public void ReadFromFile()
