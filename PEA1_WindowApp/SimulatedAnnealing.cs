@@ -1,7 +1,9 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
+using System.ComponentModel;
 using System.Linq;
 using System.Reflection;
+using System.Security.Cryptography.X509Certificates;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms.VisualStyles;
@@ -15,12 +17,14 @@ namespace PEA1_WindowApp
         public int minCost { get; set; }
         public float time { get; set; }
         public float Cooling { get; set; }
-        public List<int> minPath = new List<int>();
+        public List<int> minPath;
 
-        private ReadData rd = new ReadData();
+        private ReadData rd;
 
-        public SimulatedAnnealing()
+        public SimulatedAnnealing(ReadData rd)
         {
+            this.minPath = new List<int>();
+            this.rd = rd;
 //            temperature = vertex;
 //            minCost = 0;
 //            minPath.Clear();
@@ -31,12 +35,14 @@ namespace PEA1_WindowApp
             Random rand = new Random();
             var watch = System.Diagnostics.Stopwatch.StartNew();
             List<int> tempDataList = new List<int>();
-            rd.ReadFromFile();
-            foreach (var s in rd.list)
-            {
-                tempDataList.Add(int.Parse(s));
-            }
+            //rd.ReadFromFile();
+//            foreach (var s in rd.list)
+//            {
+//                tempDataList.Add(Int32.Parse(s));
+//            }
+ 
            // tempDataList = rd.list.ConvertAll(int.Parse);
+            var x = rd.matrix;
             tempDataList = RandomPath(tempDataList);
             int tempCost = CalculateCost(tempDataList);
 
@@ -61,7 +67,7 @@ namespace PEA1_WindowApp
                 }
 
                 temperature = temperature * Cooling;
-                watch.Stop();
+               // watch.Stop();
 
             } while (Math.Ceiling((double)watch.ElapsedMilliseconds * 1000) <= time);
 
@@ -97,21 +103,17 @@ namespace PEA1_WindowApp
 
             for (int i = 0; i < tempList.Count - 1; i++)
             {
-                cost += rd.list[tempList.ElementAt(i)][tempList.ElementAt(i + 1)];
+                cost += rd.matrix[tempList.ElementAt(i)][tempList.ElementAt(i + 1)];
             }
             
-            cost += rd.list[tempList.ElementAt(tempList.Last() - 1)][tempList.ElementAt(0)];
+           // cost += rd.matrix[tempList.ElementAt(tempList.Last() - 1)][tempList.ElementAt(tempList.First())];
 
             return cost;
         }
 
         public float Probability(int newCost, int oldCost, double currentTemperature)
-        {
-            float result = 0;
-
-            result = (float) Math.Pow(Math.E, (-(newCost - oldCost) / currentTemperature));
-
-            return result;
+        { 
+            return (float)Math.Pow(Math.E, (-(newCost - oldCost) / currentTemperature)); ;
         }
 
         public List<int> RandomPath(List<int> tempList)

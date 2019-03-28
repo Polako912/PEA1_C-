@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -14,7 +14,7 @@ namespace PEA1_WindowApp
     public partial class Form1 : Form
     {
         private ReadData rd = new ReadData();
-        private SimulatedAnnealing sa = new SimulatedAnnealing();
+        private SimulatedAnnealing sa;
 
         MainMenu mainMenu = new MainMenu();
         MenuItem menuItem1 = new MenuItem("Plik");
@@ -29,8 +29,15 @@ namespace PEA1_WindowApp
         TextBox timeValue = new TextBox();
         TextBox coolingValue = new TextBox();
 
+        TextBox pathResult = new TextBox();
+        TextBox costResult = new TextBox();
+
         Label timeLabel = new Label();
         Label coolingLabel = new Label();
+
+        Label result = new Label();
+        Label path = new Label();
+        Label cost = new Label();
 
         public Form1()
         {
@@ -47,9 +54,18 @@ namespace PEA1_WindowApp
             this.Controls.Add(timeLabel);
             this.Controls.Add(coolingValue);
             this.Controls.Add(coolingLabel);
+            this.Controls.Add(pathResult);
+            this.Controls.Add(costResult);
+            this.Controls.Add(result);
+            this.Controls.Add(path);
+            this.Controls.Add(cost);
 
             timeLabel.Text = "Czas wykonywania algorytmu";
-            coolingLabel.Text = "Wspolczynnik chlodzenia";
+            coolingLabel.Text = "Współczynnik chłodzenia";
+
+            result.Text = "Wynik algorytmu";
+            path.Text = "Ścieżka";
+            cost.Text = "Koszt";
 
             chooseFile.Top = 60;
             chooseFile.Left = 350;
@@ -75,8 +91,28 @@ namespace PEA1_WindowApp
             coolingLabel.Left = 200;
             coolingLabel.Width = 150;
 
+            pathResult.Top = 180;
+            pathResult.Left = 350;
+            pathResult.Width = 120;
+
+            costResult.Top = 210;
+            costResult.Left = 350;
+            costResult.Width = 120;
+
+            result.Top = 195;
+            result.Left = 200;
+            result.Width = 100;
+
+            path.Top = 182;
+            path.Left = 300;
+            path.Width = 100;
+
+            cost.Top = 212;
+            cost.Left = 300;
+            cost.Width = 100;
+
             chooseFile.Text = "Wybierz plik";
-            bfButton.Text = "Symulowane Wyzarzanie";
+            bfButton.Text = "Symulowane Wyżarzanie";
 
             EventHandler ev = new EventHandler(this.chooseFile_click);
             chooseFile.Click += ev;
@@ -102,9 +138,13 @@ namespace PEA1_WindowApp
 
         public void SaAlgorithm_click(object sender, EventArgs e)
         {
+            sa = new SimulatedAnnealing(rd);
             sa.time = int.Parse(timeValue.Text);
             sa.Cooling = float.Parse(coolingValue.Text.Trim(), CultureInfo.InvariantCulture.NumberFormat);
             sa.SaAlgorithm();
+
+            pathResult.Text = String.Join("->", sa.minPath);
+            costResult.Text = sa.minCost.ToString();
         }
     }
 }
