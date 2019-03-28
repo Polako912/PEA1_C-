@@ -23,11 +23,8 @@ namespace PEA1_WindowApp
 
         public SimulatedAnnealing(ReadData rd)
         {
-            this.minPath = new List<int>();
+            minPath = new List<int>();
             this.rd = rd;
-//            temperature = vertex;
-//            minCost = 0;
-//            minPath.Clear();
         }
 
         public void SaAlgorithm()
@@ -35,19 +32,14 @@ namespace PEA1_WindowApp
             Random rand = new Random();
             var watch = System.Diagnostics.Stopwatch.StartNew();
             List<int> tempDataList = new List<int>();
-            //rd.ReadFromFile();
-//            foreach (var s in rd.list)
-//            {
-//                tempDataList.Add(Int32.Parse(s));
-//            }
- 
-           // tempDataList = rd.list.ConvertAll(int.Parse);
-            var x = rd.matrix;
+          
             tempDataList = RandomPath(tempDataList);
             int tempCost = CalculateCost(tempDataList);
 
             do
             {
+                watch.Start();
+          
                 for (int i = 0; i < rd.vertex; i++)
                 {
                     List<int> shuffledList = new List<int>();
@@ -67,9 +59,10 @@ namespace PEA1_WindowApp
                 }
 
                 temperature = temperature * Cooling;
-               // watch.Stop();
+               
+            } while (watch.Elapsed <= TimeSpan.FromSeconds(time));
 
-            } while (Math.Ceiling((double)watch.ElapsedMilliseconds * 1000) <= time);
+            watch.Stop();
 
             minPath = tempDataList;
             minCost = tempCost;
@@ -106,7 +99,7 @@ namespace PEA1_WindowApp
                 cost += rd.matrix[tempList.ElementAt(i)][tempList.ElementAt(i + 1)];
             }
             
-           // cost += rd.matrix[tempList.ElementAt(tempList.Last() - 1)][tempList.ElementAt(tempList.First())];
+            cost += rd.matrix[tempList.ElementAt(tempList.Last())][tempList.ElementAt(tempList.First())];
 
             return cost;
         }

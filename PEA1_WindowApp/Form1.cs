@@ -114,10 +114,10 @@ namespace PEA1_WindowApp
             chooseFile.Text = "Wybierz plik";
             bfButton.Text = "Symulowane Wyżarzanie";
 
-            EventHandler ev = new EventHandler(this.chooseFile_click);
+            EventHandler ev = chooseFile_click;
             chooseFile.Click += ev;
 
-            EventHandler ev1 = new EventHandler(this.SaAlgorithm_click);
+            EventHandler ev1 = SaAlgorithm_click;
             bfButton.Click += ev1;
 
             InitializeComponent();
@@ -143,7 +143,7 @@ namespace PEA1_WindowApp
             sa.Cooling = float.Parse(coolingValue.Text.Trim(), CultureInfo.InvariantCulture.NumberFormat);
             sa.SaAlgorithm();
 
-            pathResult.Text = String.Join("->", sa.minPath);
+            pathResult.Text = string.Join("->", sa.minPath);
             costResult.Text = sa.minCost.ToString();
         }
     }
