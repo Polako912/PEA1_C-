@@ -14,11 +14,6 @@ namespace PEA1_WindowApp
 
         public List<List<int>> matrix = new List<List<int>>();
 
-        public ReadData()
-        {
- 
-        }
-
         public void ReadFromFile()
         {
             list.Clear();

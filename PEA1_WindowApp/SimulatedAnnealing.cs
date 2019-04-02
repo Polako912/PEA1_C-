@@ -1,12 +1,6 @@
 using System;
 using System.Collections.Generic;
-using System.ComponentModel;
 using System.Linq;
-using System.Reflection;
-using System.Security.Cryptography.X509Certificates;
-using System.Text;
-using System.Threading.Tasks;
-using System.Windows.Forms.VisualStyles;
 using static PEA1_WindowApp.ExtensionMethod;
 
 namespace PEA1_WindowApp
@@ -42,8 +36,7 @@ namespace PEA1_WindowApp
           
                 for (int i = 0; i < rd.vertex; i++)
                 {
-                    List<int> shuffledList = new List<int>();
-                    shuffledList = ShuffleList(tempDataList);
+                    var shuffledList = ShuffleList(tempDataList);
                     int newCost = CalculateCost(shuffledList);
 
                     if (newCost < tempCost)
@@ -75,17 +68,17 @@ namespace PEA1_WindowApp
 
             Random rand = new Random();
 
-            int x = 0;
-            int y = 0;
+            int first = 0;
+            int second = 0;
 
             do
             {
-                x = rand.Next(0, rd.vertex);
-                y = rand.Next(0, rd.vertex);
+                first = rand.Next(0, rd.vertex);
+                second = rand.Next(0, rd.vertex);
 
-            } while (x == y);
+            } while (first == second);
 
-            temp.Swap(x, y);
+            temp.Swap(first, second);
 
             return temp;
         }

@@ -1,12 +1,5 @@
 using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
 using System.Globalization;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 
 namespace PEA1_WindowApp
@@ -17,11 +10,11 @@ namespace PEA1_WindowApp
         private SimulatedAnnealing sa;
 
         MainMenu mainMenu = new MainMenu();
-        MenuItem menuItem1 = new MenuItem("Plik");
-        MenuItem menuItem2 = new MenuItem("O programie");
-        MenuItem menuItem3 = new MenuItem("Zamknij");
-        MenuItem menuItem4 = new MenuItem("Wybierz plik");
-        MenuItem menuItem5 = new MenuItem("Opis");
+        MenuItem menuItemFile = new MenuItem("Plik");
+        MenuItem menuItemInfo = new MenuItem("O programie");
+        MenuItem menuItemClose = new MenuItem("Zamknij");
+        MenuItem menuItemChoose = new MenuItem("Wybierz plik");
+        MenuItem menuItemDesc = new MenuItem("Opis");
 
         Button chooseFile = new Button();
         Button bfButton = new Button();
@@ -41,24 +34,24 @@ namespace PEA1_WindowApp
 
         public Form1()
         {
-            mainMenu.MenuItems.Add(menuItem1);
-            menuItem1.MenuItems.Add(menuItem4);
-            mainMenu.MenuItems.Add(menuItem2);
-            menuItem2.MenuItems.Add(menuItem5);
-            mainMenu.MenuItems.Add(menuItem3);
+            mainMenu.MenuItems.Add(menuItemFile);
+            menuItemFile.MenuItems.Add(menuItemChoose);
+            mainMenu.MenuItems.Add(menuItemInfo);
+            menuItemInfo.MenuItems.Add(menuItemDesc);
+            mainMenu.MenuItems.Add(menuItemClose);
             
-            this.Controls.Add(chooseFile);
-            this.Controls.Add(bfButton);
-            this.Menu = mainMenu;
-            this.Controls.Add(timeValue);
-            this.Controls.Add(timeLabel);
-            this.Controls.Add(coolingValue);
-            this.Controls.Add(coolingLabel);
-            this.Controls.Add(pathResult);
-            this.Controls.Add(costResult);
-            this.Controls.Add(result);
-            this.Controls.Add(path);
-            this.Controls.Add(cost);
+            Controls.Add(chooseFile);
+            Controls.Add(bfButton);
+            Menu = mainMenu;
+            Controls.Add(timeValue);
+            Controls.Add(timeLabel);
+            Controls.Add(coolingValue);
+            Controls.Add(coolingLabel);
+            Controls.Add(pathResult);
+            Controls.Add(costResult);
+            Controls.Add(result);
+            Controls.Add(path);
+            Controls.Add(cost);
 
             timeLabel.Text = "Czas wykonywania algorytmu";
             coolingLabel.Text = "Współczynnik chłodzenia";
@@ -116,9 +109,16 @@ namespace PEA1_WindowApp
 
             EventHandler ev = chooseFile_click;
             chooseFile.Click += ev;
+            menuItemChoose.Click += ev;
 
             EventHandler ev1 = SaAlgorithm_click;
             bfButton.Click += ev1;
+
+            EventHandler handleClose = Close_click;
+            menuItemClose.Click += handleClose;
+
+            EventHandler handleInfo = Info_click;
+            menuItemDesc.Click += handleInfo;
 
             InitializeComponent();
         }
@@ -145,6 +145,16 @@ namespace PEA1_WindowApp
 
             pathResult.Text = string.Join("->", sa.minPath);
             costResult.Text = sa.minCost.ToString();
+        }
+
+        public void Info_click(object sender, EventArgs e)
+        {
+            MessageBox.Show("Autor Michał Polak");
+        }
+
+        public void Close_click(object sender, EventArgs e)
+        {
+            Application.Exit();
         }
     }
 }
